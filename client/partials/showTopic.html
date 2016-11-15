@@ -1,0 +1,22 @@
+<div ng-controller='topicController'>
+    <header>
+        <a href="#/dashboard">Dashboard</a><br>
+        <a href="" ng-click='logout()'>Logout</a>
+    </header>
+    <p><a href="#/users/{{showTopic._user._id}}">{{showTopic._user.username}}</a> posted a topic:</p>
+    <h4>{{showTopic.title}}</h4>
+    <p>Description: {{showTopic.description}}</p>
+    <h4>Post your answer here...</h4>
+    <textarea ng-model='post.body' rows="8" cols="40"></textarea>
+    <button type="button" ng-click='addPost()'>Post</button>
+    <div class="responses">
+        <div class="response" ng-repeat='post in showTopic.posts'>
+            <p><a href="#/users/{{post._user._id}}">{{post._user.username}}:</a> {{post.body}}</p>
+            <div class="comment" ng-repeat='comment in post.comments'>
+                <p><a href="#/users/{{comment._user._id}}">{{comment._user.username}}:</a> {{comment.body}}</p>
+            </div>
+            <textarea ng-model='comment.body' rows="8" cols="40"></textarea>
+            <button type="button" ng-click='addComment(comment, post)'>Comment</button>
+        </div>
+    </div>
+</div>
